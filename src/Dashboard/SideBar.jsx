@@ -204,7 +204,7 @@ export default function Sidebar({ DrawerOpen, DrawerClose }) {
                 }}>
                 <ListItemIcon>
 
-                  <BusinessIcon sx={[selectedMenu === 'gallery' && { color: "white" }]} />
+                  <CollectionsIcon sx={[selectedMenu === 'gallery' && { color: "white" }]} />
                 </ListItemIcon>
                 <ListItemText primary="Gallery" />
 
@@ -245,7 +245,7 @@ export default function Sidebar({ DrawerOpen, DrawerClose }) {
     }}>
 
 
-      <Box sx={{ p: 4 }}>
+      <Box sx={{ p: 4,borderBottom: 2, borderColor: "#eee"  }}>
 
         <Stack direction={'row'} spacing={1}>
           <Box>
