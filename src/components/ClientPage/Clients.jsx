@@ -15,7 +15,9 @@ import { AddCircleOutlineSharp, ErrorOutlineOutlined } from "@mui/icons-material
 import CircularProgress from '@mui/material/CircularProgress';
 import ConfirmDelete from "../../../CustomHooks/deleteComponent/ConfirmDelete";
 import {  useDeleteHook } from "../../../CustomHooks/deleteComponent/deleteHooks";
-import {getAll,AddData,Update,DeleteData} from '../../../Shared/apiCRUD'
+// import {getAll,AddData,Update,DeleteData} from '../../../Shared/apiCRUD'
+import {GetQuery,PostQuery,UpdateQuery,DeleteQuery} from '../../../Shared/ReactQuery'  
+
 
 
 export default function Clients() {
@@ -36,100 +38,56 @@ export default function Clients() {
     setDailog(!dailogOpen)
   }
 
-  const { data: client, isLoading, isError } = useQuery({
-    queryKey: ['client'],
-    queryFn: async (data) => await getAll('/ourclient',data),
-    onError: () => {
-      toast.error("sorry xogta lama keenin")
-    },
-    onSuccess: () => {
-      toast.success("Haa xogta waa lakeeney")
-    }
-
-  })
-  console.log(client?.data)
-
-  const { mutate, isLoading: mutateLoading } = useMutation({
-    mutationFn: async (data) => await AddData('/ourclient',data),
-    onSuccess: () => {
-      queryclient.invalidateQueries({ queryKey: ['client'] })
-      toast.success("the data has successfully been added Onsucess")
-      ToggleDailog()
-    },
-    onError: () => {
-      toast.error("sorry Xog lama xareynin")
-    },
-
-  })
-
-  // const { mutate: updateMutate, isLoading: updateLoading } = useMutation({
-  //   mutationFn: async (EditId, data) => await UpdateClient(EditId, data),
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries({ queryKey: ['client'] })
-  //     toast.success("data has been updated succesfully")
-  //     ToggleDailog()
-  //     // setEditId('')
-
-  //   },
+  // const { data: client, isLoading, isError } = useQuery({
+  //   queryKey: ['client'],
+  //   queryFn: async (data) => await getAll('/ourclient',data),
   //   onError: () => {
-  //     toast.error("Sorry data has'nt been updated")
+  //     toast.error("sorry xogta lama keenin")
+  //   },
+  //   onSuccess: () => {
+  //     toast.success("Haa xogta waa lakeeney")
   //   }
 
   // })
+  const { data:client ,isLoading, isError}= GetQuery('/ourclient','client')
+  console.log(client?.data)
+
+  // const { mutate, isLoading: mutateLoading } = useMutation({
+  //   mutationFn: async (data) => await AddData('/ourclient',data),
+  //   onSuccess: () => {
+  //     queryclient.invalidateQueries({ queryKey: ['client'] })
+  //     toast.success("the data has successfully been added Onsucess")
+  //     ToggleDailog()
+  //   },
+  //   onError: () => {
+  //     toast.error("sorry Xog lama xareynin")
+  //   },
+
+  // })
+  const {mutateAsync, isloading: mutateLoading}= PostQuery("/ourclient")
+
+  const {mutateAsync:updateMutate} = UpdateQuery(`/ourclient/${EditId}`,"client")
 
 
+  // const { mutate: updateMutate, isLoading: updateLoading } = useMutation({
+  //   mutationFn: async (data) => {
 
+  //     return await Update(`/ourclient/${EditId}`, data)
 
-  // const AddNewClient = async (data) => {
+  //   },
+  //   onSuccess: () => {
+  //     queryclient.invalidateQueries({ queryKey: ['client'] })
+  //     toast.success("data has been updated")
+  //     ToggleDailog()
+  //   },
 
-  //   if (EditId !== '') {
-
-  //     try {
-  //       // await UpdateClient(EditId, data)
-  //       updateMutate(data)
-  //       // console.log("Data has been Updated")
-  //       // ToggleDailog()
-  //       reset()
-  //     } catch (err) {
-  //       console.log("error ayaa jira ", err)
-
-  //     }
-  //   }
-  //   else {
-  //     try {
-  //       // await AddClient(data)
-  //       mutate(data)
-  //       ToggleDailog()
-  //       reset()
-  //     } catch (err) {
-  //       console.log("error ayaa jira ", err)
-
-  //     }
-
-  //   }
-
-
-
-  // }
-  const { mutate: updateMutate, isLoading: updateLoading } = useMutation({
-    mutationFn: async (data) => {
-
-      return await Update(`/ourclient/${EditId}`, data)
-
-    },
-    onSuccess: () => {
-      queryclient.invalidateQueries({ queryKey: ['client'] })
-      toast.success("data has been updated")
-      ToggleDailog()
-    },
-
-    onError: (e) => {
+  //   onError: (e) => {
       
 
-      toast.error("Sorry Update ma dhicin")
-      console.log(e)
-    }
-  })
+  //     toast.error("Sorry Update ma dhicin")
+  //     console.log(e)
+  //   }
+  // })
   const AddNewClient = async (data) => {
 
     if (EditId !== '') {
@@ -137,7 +95,9 @@ export default function Clients() {
       try {
         // console.log(data)
         //   update section
-        updateMutate(data)
+        updateMutate(data).then(()=>{
+          toast.success("data has been updated successfully")
+        })
         // console.log("Data has been Updated")
 
         reset()
@@ -148,7 +108,10 @@ export default function Clients() {
     }
     else {
       try {
-        mutate(data)
+        mutateAsync(data).then(()=>{
+          toast.success("data has been inserted successfully")
+
+        })
         // await AddClient(data)
 
         ToggleDailog()
@@ -212,19 +175,21 @@ export default function Clients() {
 
 // }
 
-const {mutate:delateMutate}=useMutation({
-  mutationFn:(id)=>DeleteData(`ourclient/${id}`),
-  onSuccess:()=>{
-      toast.success('Client has been deleted')
-      DeleteHook.Toggle()
-      queryclient.invalidateQueries({queryKey:['client']})
-  },
-  onError:(err)=>{
-      toast.error(err.message)
-  }
+// const {mutate:delateMutate}=useMutation({
+//   mutationFn:(id)=>DeleteData(`ourclient/${id}`),
+//   onSuccess:()=>{
+//       toast.success('Client has been deleted')
+//       DeleteHook.Toggle()
+//       queryclient.invalidateQueries({queryKey:['client']})
+//   },
+//   onError:(err)=>{
+//       toast.error(err.message)
+//   }
 
 
-})
+// })
+const {mutate:delateMutate}=DeleteQuery(`/ourclient/${CliDelId}`,"client")
+
 const DeleteHook=useDeleteHook()
 
 const DeleteCheck=()=>{
@@ -236,6 +201,7 @@ const DeleteClientInfo= async(data)=>{
   DeleteHook.setMessage(data.ClientName)
   DeleteHook.Toggle();
   setCliDelId(data._id)
+
 
 }
 
