@@ -8,7 +8,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from "react";
 // import ClientsList from '../ClientPage/ClientsList';
 import ClientsList from '../ClientPage/ClientsList';
-// import { AddClient, getAllClient, UpdateClient, DeleteClient } from "./apiCrud";
 import { useForm } from "react-hook-form"
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { toast } from 'react-toastify';
@@ -17,6 +16,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import ConfirmDelete from "../../../CustomHooks/deleteComponent/ConfirmDelete";
 import {  useDeleteHook } from "../../../CustomHooks/deleteComponent/deleteHooks";
 import {getAll,AddData,Update,DeleteData} from '../../../Shared/apiCRUD'
+
 
 export default function Clients() {
 
