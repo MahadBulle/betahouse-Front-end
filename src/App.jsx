@@ -8,6 +8,7 @@ import Home from "./components/HomePage/Home";
 import About from "./components/AboutPage/About";
 import Contact from "./components/ContactPage/Contact";
 import Houses from "./components/HousesPage/Houses";
+import ImagesFolder from "./components/HousesPage/ImagesFolder";
 import Users from "./components/UsersPage/Users";
 
 function app() {
@@ -22,6 +23,7 @@ function app() {
         <Route path='Dashboard' element={<Dashboard />}>
           <Route path='client' element={<Clients />} />
           <Route path='houses' element={<Houses />} />
+          <Route path='images/:id/:Type' element={<ImagesFolder />} />
           <Route path='services' element={<Services />} />
           <Route path='home' element={<Home />} />
           <Route path='gallery' element={<Gallery />} />

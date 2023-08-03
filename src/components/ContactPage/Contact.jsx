@@ -35,6 +35,9 @@ export default function Contact() {
   const ToggleDailog = () => {
     setDailog(!dailogOpen)
   }
+  const onClear = () =>{
+    setEditId('')
+  }
 
   const { data:contact ,isLoading, isError}= GetQuery('/contact','contacts')
   // console.log(service?.data)
@@ -56,8 +59,8 @@ export default function Contact() {
         })
         // console.log("Data has been Updated")
         ToggleDailog()
-
         reset()
+        setEditId('')
       } catch (err) {
         console.log("error ayaa jira ", err)
 
@@ -139,8 +142,10 @@ const DeleteContactInfo= async(data)=>{
         </IconButton>
       </Box>
 
-      <Dialog open={dailogOpen} onClose={ToggleDailog}>
-        <DialogTitle>New Contacts</DialogTitle>
+      <Dialog sx={{
+        backdropFilter: "blur(5px) sepia(5%)",
+      }} PaperProps={{ sx: { borderRadius: "20px" }}} open={dailogOpen} onClose={ToggleDailog}>
+        <DialogTitle sx={{ bgcolor: "primary.dark", color:"white"  }}>New Contacts</DialogTitle>
         <Box component={"form"} onSubmit={handleSubmit(AddNewContacts)}>
           <DialogContent >
             <Box sx={{ width: "400px" }} mt={2}>
@@ -163,7 +168,11 @@ const DeleteContactInfo= async(data)=>{
             </Box>
           </DialogContent>
           <DialogActions>
-            <Button onClick={ToggleDailog}>Cancel</Button>
+          <Button onClick={()=>{
+              ToggleDailog();
+              reset();
+              onClear();
+            }}>Cancel</Button>
             <Button variant="contained" disabled={mutateLoading} sx={{ bgcolor: "primary.main" }} type="submit" size="small">
 
               {EditId !== '' ? "Update" : "Submit"}

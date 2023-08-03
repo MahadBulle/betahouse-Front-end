@@ -84,13 +84,25 @@ export default function Sidebar({ DrawerOpen, DrawerClose }) {
 
             </Link>
 
-            <ListItemButton >
+            <Link to={'houses'} style={{ textDecoration: "none" }}>
+            <ListItemButton
+              sx={[selectedMenu === 'houses' && {
+                bgcolor: "primary.main", color: "white", ":hover": {
+                  bgcolor: "primary.dark"
+                }
+              }]}
+              onClick={() => {
+                setMenu('houses')
+                DrawerClose()
+
+              }}>
               <ListItemIcon>
-                <InboxIcon />
+                <InboxIcon sx={[selectedMenu === 'houses' && { color: "white" }]} />
               </ListItemIcon>
               <ListItemText primary="Houses" />
-
             </ListItemButton>
+
+          </Link>
             {/* <ListItemButton onClick={handleClick}>
             <ListItemIcon>
               <InboxIcon />
@@ -294,13 +306,24 @@ export default function Sidebar({ DrawerOpen, DrawerClose }) {
 
           </Link>
 
-          <ListItemButton >
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Houses" />
+          <Link to={'houses'} style={{ textDecoration: "none" }}>
+            <ListItemButton
+              sx={[selectedMenu === 'houses' && {
+                bgcolor: "primary.main", color: "white", ":hover": {
+                  bgcolor: "primary.dark"
+                }
+              }]}
+              onClick={() => {
+                setMenu('houses')
 
-          </ListItemButton>
+              }}>
+              <ListItemIcon>
+                <InboxIcon sx={[selectedMenu === 'houses' && { color: "white" }]} />
+              </ListItemIcon>
+              <ListItemText primary="Houses" />
+            </ListItemButton>
+
+          </Link>
           {/* <ListItemButton onClick={handleClick}>
             <ListItemIcon>
               <InboxIcon />

@@ -38,6 +38,10 @@ export default function Clients() {
     setDailog(!dailogOpen)
   }
 
+  const onClear = () =>{
+    setEditId('')
+  }
+
   // const { data: client, isLoading, isError } = useQuery({
   //   queryKey: ['client'],
   //   queryFn: async (data) => await getAll('/ourclient',data),
@@ -98,9 +102,11 @@ export default function Clients() {
         updateMutate(data).then(()=>{
           toast.success("data has been updated successfully")
         })
+
         // console.log("Data has been Updated")
 
         reset()
+        setEditId('')
       } catch (err) {
         console.log("error ayaa jira ", err)
 
@@ -230,8 +236,10 @@ const DeleteClientInfo= async(data)=>{
         </IconButton>
       </Box>
 
-      <Dialog open={dailogOpen} onClose={ToggleDailog}>
-        <DialogTitle>New Client</DialogTitle>
+      <Dialog sx={{
+        backdropFilter: "blur(5px) sepia(5%)",
+      }} PaperProps={{ sx: { borderRadius: "20px" , color:"white"  }}} open={dailogOpen} onClose={ToggleDailog}>
+        <DialogTitle sx={{ bgcolor: "primary.dark" }}>New Client</DialogTitle>
         <Box component={"form"} onSubmit={handleSubmit(AddNewClient)}>
           <DialogContent >
             <Box sx={{ width: "400px" }} mt={2}>
@@ -252,7 +260,11 @@ const DeleteClientInfo= async(data)=>{
             </Box>
           </DialogContent>
           <DialogActions>
-            <Button onClick={ToggleDailog}>Cancel</Button>
+            <Button onClick={()=>{
+              ToggleDailog();
+              reset();
+              onClear();
+            }}>Cancel</Button>
             <Button variant="contained" disabled={mutateLoading} sx={{ bgcolor: "primary.main" }} type="submit" size="small">
 
               {EditId !== '' ? "Update" : "Submit"}

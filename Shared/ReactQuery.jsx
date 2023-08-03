@@ -19,12 +19,13 @@ export const GetQuery = (endpoint, queryKey) => {
 export const PostQuery = (endpoint,queryKey) => {
     const queryclient = useQueryClient();
     return useMutation({
-        mutationFn: (data)=> AddData(endpoint,data),
+        mutationFn:async (data)=> await AddData(endpoint,data),
         onSuccess: () => {
             queryclient.invalidateQueries({ queryKey: [queryKey] })
         },
-        onError: () => {
+        onError: (err) => {
             toast.error("sorry datada lama xareynin")
+            console.log("error",err)
         }
 
 })
