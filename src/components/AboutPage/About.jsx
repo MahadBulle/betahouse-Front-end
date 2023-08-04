@@ -1,182 +1,88 @@
-// import { Box, Stack, IconButton, Typography, Alert, TextField, Button, Divider } from "@mui/material"
-// import AddHomeWorkIcon from '@mui/icons-material/AddHomeWork';
-// import Dialog from '@mui/material/Dialog';
-// import DialogActions from '@mui/material/DialogActions';
-// import DialogContent from '@mui/material/DialogContent';
-// import DialogTitle from '@mui/material/DialogTitle';
-// import { useEffect, useState } from "react";
-// import AboutList from "./AboutList";
-// import { AddAbout, getAllAbout, UpdateAbout } from "./ApiCrudsabout";
-// import { useForm } from "react-hook-form";
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-// import { yupResolver } from '@hookform/resolvers/yup';
-// import * as yup from 'yup';
-
-// const AboutSchema = yup.object({
-//   Description: yup.string().required('Enter the description'),
-//   ShortDescription: yup.string().required("Enter the short description")
-
-// });
-
-// export const About = () => {
-//   const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm()
-//   const [dailogOpen, setDailog] = useState(false)
-//   const ToggleDailog = () => {
-//     setDailog(!dailogOpen)
-//   }
-
-//   const [About, setAbout] = useState([])
-//   const [abid, setabid] = useState('')
-//   const [ time, setTime]= useState(new Date())
-
-//   useEffect(() => {
-//     const allAbout = async () => {
-
-//       const { data } = await getAllAbout()
-
-//       console.log('Xogta', data)
-
-//       setAbout(data)
-//     }
-
-//     allAbout()
-
-
-//   }, [time])
-
-
-
-
-//   const AddNewAbout = async (data) => {
-//     if (abid !== '') {
-
-//       try {
-//         await UpdateAbout(abid, data)
-//         console.log("Data has been Updated successfully")
-//         ToggleDailog()
-//         reset()
-//         setTime(new Date())
-//         toast.success(data.message);
-//       } catch (err) {
-//         console.log("error ayaa jira ", err)
-//         toast.error(data.message);
-
-//       }
-//     }
-//     else {
-//       try {
-//         await AddAbout(data)
-//         console.log("Data has been saved successfully")
-//         ToggleDailog()
-//         reset()
-//         setTime(new Date())
-//         toast.success(data.message);
-//       } catch (err) {
-//         console.log("error ayaa jira ", err)
-//         toast.error(data.message);
-
-//       }
-
-//     }
-
-//   }
-
-
-//   const UpdateAboutInfo = async (data)=>{
-//     // console.log("xogta la rabbo in la update gareeyo",data)
-//     setValue("Description", data.Description)
-//     setValue("ShortDescription", data.ShortDescription)
-//     setabid(data._id)
-//     ToggleDailog()
-    
-//     }
-
-//   return <>
-//     <Box p={4}>
-
-//       <Alert severity="info">About Us</Alert>
-//       <Box sx={{ display: "flex", justifyContent: "space-between" }} my={4}>
-//         <Typography variant="h6">List About</Typography>
-
-//         <IconButton onClick={ToggleDailog}>
-//           <AddHomeWorkIcon sx={{ color: "green" }} />
-//         </IconButton>
-//       </Box>
-
-//       <Dialog open={dailogOpen} onClose={ToggleDailog}>
-//         <DialogTitle>New Image</DialogTitle>
-//         <Box component={"form"} onSubmit={handleSubmit(AddNewAbout)}>
-//           <DialogContent>
-//             <Box sx={{ width: "400px" }} mt={2}>
-
-
-
-//               <Stack spacing={2} direction={'column'}>
-
-
-
-//                 <TextField label="Description" {...register("Description")} variant="outlined" size="small" fullWidth 
-                
-//                 />
-
-//                 <TextField label="ShortDescription" variant="outlined" {...register("ShortDescription")} size="small" fullWidth />
-
-
-//               </Stack>
-
-//             </Box>
-//           </DialogContent>
-//           <DialogActions>
-//             <Button onClick={ToggleDailog}>Cancel</Button>
-//             <Button variant="contained" type="submit" size="small">Submit</Button>
-
-//           </DialogActions>
-
-//         </Box>
-//         <ToastContainer></ToastContainer>
-//       </Dialog>
-
-//       <Divider />
-//       {About ? <AboutList AboutData={About} update={UpdateAboutInfo} /> : null}
-
-//     </Box>
-//   </>
-// }
-// export default About
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { Box, Stack, IconButton, Typography, Alert, TextField, Button, Divider } from "@mui/material"
-import "./About.css"
+import { Box, Stack, IconButton, Typography, Alert, TextField, Button, Divider, Breadcrumbs, Link } from "@mui/material"
+// import "./About.css"
+import { GetQuery, PostQuery } from '../../../Shared/ReactQuery'
+import { AddData, getAll, Update } from "../../../Shared/apiCRUD";
+import { toast } from 'react-toastify';
+
 
 export default function About() {
-  const [fahfahin, setfahfahin] = useState('');
-  const [fahfahinyer, setfahfahinyer] = useState('');
-const Update = ()=>{
-  // console.log("datada",fahfahin)
-  const data = {
-    Description: fahfahin,
-    ShortDescription: fahfahinyer
-  }
-  console.log("xogta",data)
-}
+  const [Desc, setDesc] = useState('');
+  const [Descyer, setDescyer] = useState('');
 
+  // const { data ,isLoading, isError}= GetQuery('/about','about')
+  // console.log("informa",data?.data)
+  // const {mutateAsync, isloading: mutateLoading}= PostQuery("/about","about")
+  // useEffect(()=>{
+  //   setDesc(data[0]?.Description)
+  //   setDescyer(data[0]?.ShortDescription)
+
+  // },[data])
+
+  useEffect(() => {
+
+    const aboutHel = async () => {
+
+      const { data } = await getAll('about')
+      console.log(data)
+      setDesc(data[0]?.Description)
+      setDescyer(data[0]?.ShortDescription)
+
+    }
+    aboutHel()
+
+  }, [])
+
+ const {mutateAsync}= PostQuery("/about","about")
+
+  const UpdateAbout =async () => {
+    const data = {
+      Description:Desc,
+      ShortDescription:Descyer
+    }
+    mutateAsync(data).then(()=>{console.log("data has been updated")})
+
+    // const data = {
+    //   Description: Desc,
+    //   ShortDescription: Descyer
+    // }
+    // AddData(data).then(()=>{console.log("data has been updated")})
+    // toast.success('this data has been updated successfully')
+  }
   return (
     <div>
-     <Button onClick={()=>{
-      Update()
-     }
-    }>
-      update
-     </Button>
-    <Box sx={{ p:4 }}>
-      <ReactQuill className='rc'  theme="snow" value={fahfahin} onChange={setfahfahin} />;
-    </Box>
 
-    <Box sx={{ p:4 }}>
-      <ReactQuill className='rc'  theme="snow" value={fahfahinyer} onChange={setfahfahinyer} />;
-    </Box>
+      {/* breadcrumbs */}
+
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link underline="hover" color="inherit" href="#">
+          Dashboard
+        </Link>
+
+        <Typography color="text.primary">About us</Typography>
+      </Breadcrumbs>
+
+
+      {/* end */}
+      <Box sx={{ p: 4 }}>
+        <Button variant='contained' type='submit' sx={{ bgcolor: "primary.main", color: "white", marginTop: "5px", width: "100%" }} onClick={() =>UpdateAbout() }>
+          update
+        </Button>
+      </Box>
+      <Box sx={{ p: 4 }}>
+        <ReactQuill style={{ height: 100 }} theme="snow" value={Desc} onChange={(v) => {
+          setDesc(v);
+        }} placeholder={"Decription :"} />;
+      </Box>
+
+      <Box sx={{ p: 4 }}>
+        <ReactQuill style={{ height: 100 }} theme="snow" value={Descyer} onChange={(v) => {
+          setDescyer(v);
+        }} placeholder={"Short Description :"} />;
+      </Box>
+      {/* <About {about?.data} /> */}
 
     </div>
   )
