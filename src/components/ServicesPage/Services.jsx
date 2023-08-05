@@ -16,10 +16,19 @@ import ConfirmDelete from "../../../CustomHooks/deleteComponent/ConfirmDelete";
 import {  useDeleteHook } from "../../../CustomHooks/deleteComponent/deleteHooks";
 import {GetQuery,PostQuery,UpdateQuery,DeleteQuery} from '../../../Shared/ReactQuery'  
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
 
 
 
 export default function Services() {
+  const YupValidate = yup.object({
+    Title: yup.string().required('Enter The Title'),
+    Icon: yup.string().required("Enter The Icon"),
+    Decribtion: yup.string().required("Enter The Decription"),
+
+  });
 
   const {
     register,
@@ -27,7 +36,7 @@ export default function Services() {
     reset,
     setValue,
     formState: { errors },
-  } = useForm()
+  } = useForm({ resolver: yupResolver(YupValidate) })
   const [EditId, setEditId] = useState('')
   const queryclient = useQueryClient();
   const [SerDelId,setSerDelId]=useState("")
@@ -158,10 +167,25 @@ const DeleteServiceInfo= async(data)=>{
 
 
                 <TextField label="Title" {...register("Title")} variant="outlined" size="small" fullWidth />
+                {errors.Title ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Title.message}
+                    </Typography>
+                  ) : null}
 
                 <TextField label="Icon" variant="outlined" {...register("Icon")} size="small" fullWidth />
+                {errors.Icon ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Icon.message}
+                    </Typography>
+                  ) : null}
 
                 <TextField label="Descriprion" variant="outlined" {...register("Decribtion")} size="small" fullWidth />
+                {errors.Decribtion ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Decribtion.message}
+                    </Typography>
+                  ) : null}
 
 
               </Stack>

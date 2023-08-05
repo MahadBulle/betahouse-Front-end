@@ -16,10 +16,19 @@ import ConfirmDelete from "../../../CustomHooks/deleteComponent/ConfirmDelete";
 import {  useDeleteHook } from "../../../CustomHooks/deleteComponent/deleteHooks";
 import {GetQuery,PostQuery,UpdateQuery,DeleteQuery} from '../../../Shared/ReactQuery'  
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 
 
 export default function Contact() {
+
+  const YupValidate = yup.object({
+    Name: yup.string().required('Enter The Name'),
+    Phone: yup.string().required("Enter The phone"),
+    Message: yup.string().required("Enter The Message"),
+
+  });
 
   const {
     register,
@@ -27,7 +36,7 @@ export default function Contact() {
     reset,
     setValue,
     formState: { errors },
-  } = useForm()
+  } = useForm({ resolver: yupResolver(YupValidate) })
   const [EditId, setEditId] = useState('')
   const queryclient = useQueryClient();
   const [ConDelId,setConDelId]=useState("")
@@ -158,10 +167,25 @@ const DeleteContactInfo= async(data)=>{
 
 
                 <TextField label="Name" {...register("Name")} variant="outlined" size="small" fullWidth />
+                {errors.Name ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Name.message}
+                    </Typography>
+                  ) : null}
 
                 <TextField label="Phone" variant="outlined" {...register("Phone")} size="small" fullWidth />
+                {errors.Phone ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Phone.message}
+                    </Typography>
+                  ) : null}
 
                 <TextField label="Message" variant="outlined" {...register("Message")} size="small" fullWidth />
+                {errors.Message ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Message.message}
+                    </Typography>
+                  ) : null}
 
 
               </Stack>

@@ -22,18 +22,39 @@ import { AddData } from "../../../Shared/apiCRUD";
 // import MenuItem from '@mui/material/MenuItem';
 // import FormControl from '@mui/material/FormControl';
 // import Select from '@mui/material/Select';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
 
 
 
 export default function Houses() {
 
+  const YupValidate = yup.object({
+    Type: yup.string().required('Enter The HouseType'),
+    Area: yup.string().required("Enter The Area"),
+    Address: yup.string().required("Enter The Address"),
+    Age: yup.string().required("Enter The Age"),
+    Rent: yup.string().required("Enter The Rent"),
+    Rooms: yup.string().required("Enter The Rooms"),
+    Toilets: yup.string().required("Enter The Toilets"),
+    MasterRoom: yup.string().required("Enter The Master room"),
+    Parking: yup.string().required("Enter The Parking"),
+    Image: yup.string().required("Enter The Image"),
+    Deposit: yup.string().required("Enter The Deposit"),
+    Status: yup.string().required("Enter The Status"),
+    Description: yup.string().required("Enter The Description"),
+  
+
+  });
   const {
     register,
     handleSubmit,
     reset,
     setValue,
     formState: { errors },
-  } = useForm()
+  } = useForm({ resolver: yupResolver(YupValidate) })
+
   const [EditId, setEditId] = useState('')
   const queryclient = useQueryClient();
   const [HouDelId, setHouDelId] = useState("")
@@ -183,32 +204,111 @@ export default function Houses() {
 
 
                 <Stack spacing={2} direction={'row'}>
+                <Stack direction={'column'}>
                   <TextField label="Type" {...register("Type")} variant="outlined" size="small" fullWidth />
+                  {errors.Type ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Type.message}
+                    </Typography>
+                  ) : null}
+                  </Stack>
+                  <Stack direction={'column'}>
                   <TextField label="Area" variant="outlined" {...register("Area")} size="small" fullWidth />
+                  {errors.Area ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Area.message}
+                    </Typography>
+                  ) : null}
+                  </Stack>
+                  
                 </Stack>
 
                 <TextField label="Address" variant="outlined" {...register("Address")} size="small" fullWidth />
+                {errors.Address ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Address.message}
+                    </Typography>
+                  ) : null}
 
                 <Stack spacing={2} direction={'row'}>
+                <Stack direction={'column'}>
                   <TextField label="Age" variant="outlined" {...register("Age")} size="small" fullWidth />
+                  {errors.Age ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Age.message}
+                    </Typography>
+                  ) : null}
+                  </Stack>
+                  <Stack direction={'column'}>
                   <TextField label="Rent" variant="outlined" {...register("Rent")} size="small" fullWidth />
+                  {errors.Rent ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Rent.message}
+                    </Typography>
+                  ) : null}
+                  </Stack>
                 </Stack>
 
 
                 <Stack spacing={2} direction={'row'}>
+                <Stack direction={'column'}>
                   <TextField label="Rooms" variant="outlined" {...register("Rooms")} size="small" fullWidth />
+                  {errors.Rooms ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Rooms.message}
+                    </Typography>
+                  ) : null}
+                  </Stack>
+                  <Stack direction={'column'}>
                   <TextField label="Toilets" variant="outlined" {...register("Toilets")} size="small" fullWidth />
+                  {errors.Toilets ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Toilets.message}
+                    </Typography>
+                  ) : null}
+                  </Stack>
+                  <Stack direction={'column'}>
                   <TextField label="MasterRoom" variant="outlined" {...register("MasterRoom")} size="small" fullWidth />
+                  {errors.MasterRoom ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.MasterRoom.message}
+                    </Typography>
+                  ) : null}
+                  </Stack>
                 </Stack>
 
                 <TextField label="Parking" variant="outlined" {...register("Parking")} size="small" fullWidth />
+                {errors.Parking ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Parking.message}
+                    </Typography>
+                  ) : null}
 
                 <Stack spacing={2} direction={'row'}>
+                <Stack direction={'column'}>
                   <TextField label="Image" variant="outlined" {...register("Image")} size="small" fullWidth />
+                  {errors.Image ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Image.message}
+                    </Typography>
+                  ) : null}
+                  </Stack>
+                  <Stack direction={'column'}>
                   <TextField label="Deposit" variant="outlined" {...register("Deposit")} size="small" fullWidth />
+                  {errors.Deposit ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Deposit.message}
+                    </Typography>
+                  ) : null}
+                  </Stack>
                 </Stack>
 
                 <TextField label="Status" variant="outlined" {...register("Status")} size="small" fullWidth />
+                {errors.Status ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Status.message}
+                    </Typography>
+                  ) : null}
 
                 {/* <TextField label='Select status' select value={status} onChange={handleBedel} size="small" {...register("Status")} fullWidth>
               <MenuItem value={Available}>Available</MenuItem>
@@ -226,6 +326,11 @@ export default function Houses() {
              </TextField> */}
 
                 <TextField label="Description" variant="outlined" {...register("Description")} size="small" fullWidth />
+                {errors.Description ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Description.message}
+                    </Typography>
+                  ) : null}
 
 
               </Stack>

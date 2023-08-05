@@ -18,10 +18,17 @@ import {  useDeleteHook } from "../../../CustomHooks/deleteComponent/deleteHooks
 // import {getAll,AddData,Update,DeleteData} from '../../../Shared/apiCRUD'
 import {GetQuery,PostQuery,UpdateQuery,DeleteQuery} from '../../../Shared/ReactQuery'  
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 
 
 export default function Clients() {
+
+  const YupValidate = yup.object({
+    ClientName: yup.string().required('Enter The Client Name'),
+    Logo: yup.string().required("Enter The Client Logo"),
+  });
 
   const {
     register,
@@ -29,7 +36,8 @@ export default function Clients() {
     reset,
     setValue,
     formState: { errors },
-  } = useForm()
+  } = useForm({ resolver: yupResolver(YupValidate) })
+
   const [EditId, setEditId] = useState('')
   const queryclient = useQueryClient();
   const [CliDelId,setCliDelId]=useState("")
@@ -252,8 +260,18 @@ const DeleteClientInfo= async(data)=>{
 
 
                 <TextField label="Client Name" {...register("ClientName")} variant="outlined" size="small" fullWidth />
+                {errors.ClientName ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.ClientName.message}
+                    </Typography>
+                  ) : null}
 
                 <TextField label="Client logo" variant="outlined" {...register("Logo")} size="small" fullWidth />
+                {errors.Logo ? (
+                    <Typography sx={{ color: "error.main" }}>
+                      {errors.Logo.message}
+                    </Typography>
+                  ) : null}
 
 
               </Stack>
