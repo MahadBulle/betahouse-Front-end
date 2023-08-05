@@ -6,6 +6,8 @@ import { useState } from "react";
 // import Clients from "../components/ClientPage/Clients";
 import Gallery from "../components/GalleryPage/Gallery";
 import { Outlet } from "react-router-dom";
+import { shadows } from '@mui/system';
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
 export default function Dashboard(){
 const [draweOpen,setDrawer]=useState(false)
 
@@ -22,7 +24,7 @@ setDrawer(!draweOpen)
 <Box sx={{width:"100%"}}>
 {/* top header */}
 
-<Box sx={{backgroundColor:"#03342E",color:"white",display:"flex",justifyContent:{
+<Box sx={{bgcolor:"primary.main",boxShadow: 3,color:"white",display:"flex",justifyContent:{
     xs:"space-between",
     md:"end"
 }}} p={2}>
@@ -31,7 +33,7 @@ setDrawer(!draweOpen)
     xs:"block",
     md:"none"
 }}} onClick={()=>ToggleDrawer()}>
-    <MenuIcon sx={{color:"white"}}/>
+    <MenuIcon sx={{color:"primary.dark"}}/>
 </IconButton>
 
 <Typography > <AccountCircleIcon sx={{marginTop:"1px",}}/> User : Buulle@gmail.com</Typography>

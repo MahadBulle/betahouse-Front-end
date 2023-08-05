@@ -237,6 +237,7 @@ export default function HousesList({ HousesData, updateHouse, deleteHouse }) {
                 {/* <Dialog end> */}
 
                 <DataGrid
+                sx={{boxShadow: 1}}
 
                     rows={rows}
                     columns={columns}

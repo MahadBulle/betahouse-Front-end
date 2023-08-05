@@ -42,7 +42,7 @@ export default function About() {
       Description:Desc,
       ShortDescription:Descyer
     }
-    mutateAsync(data).then(()=>{console.log("data has been updated")})
+    mutateAsync(data).then(()=>{toast.success("data has been updated")})
 
     // const data = {
     //   Description: Desc,

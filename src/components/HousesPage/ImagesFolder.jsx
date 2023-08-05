@@ -20,14 +20,14 @@ import  storage  from '../../../Firebase';
 export default function ImagesFolder() {
     const { id, Type } = useParams()
 
-    const [imagesUpload, setuploadimages] = useState('')
-    const [imageslist, setimageslistst] = useState([])
+    const [imgUpload, setImgupload] = useState('')
+    const [imgLists, setImgLists] = useState([])
     const imageLisREF = ref(storage, "images/")
     const UploImages = () => {
-        if (imagesUpload == null) return;
-        const imagesREf = ref(storage, `images/${imagesUpload.name}`);
-        uploadBytes(imagesREf, imagesUpload).then(() => {
-            alert('images uploaded')
+        if (imgUpload == null) return;
+        const imagesREf = ref(storage, `images/${imgUpload.name}`);
+        uploadBytes(imagesREf, imgUpload).then(() => {
+            toast.success("This Image has bee added successfully")
         })
     };
 
@@ -36,7 +36,7 @@ export default function ImagesFolder() {
             // console.log(response)
             response.items.forEach((item) => {
                 getDownloadURL(item).then((url) => {
-                    setimageslistst((prev) => [...prev, url])
+                    setImgLists((prev) => [...prev, url])
                 })
             })
         })
@@ -80,7 +80,7 @@ export default function ImagesFolder() {
                 <Divider sx={{ height: 20 }} />
 
                 <Stack direction={'row'} spacing={2}>
-                    <TextField type='file' size='small' variant='outlined' label='Select Image'  onChange={(event) => { setuploadimages(event.target.files[0]) }} fullWidth />
+                    <TextField type='file' size='small' variant='outlined' label='Select Image'  onChange={(event) => { setImgupload(event.target.files[0]) }} fullWidth />
                     <Button variant='contained' onClick={UploImages} size='small'>Upload</Button>
                 </Stack>
                 <Divider />
@@ -89,7 +89,7 @@ export default function ImagesFolder() {
                     <Divider sx={{ height: 20 }} />
                     <Grid container spacing={2}>
 
-                        {imageslist.map((url, index) => {
+                        {imgLists.map((url, index) => {
 
                             return <Grid item xs={12} sm={12} md={6} lg={4}>
                                 <Card sx={{ maxWidth: 345 }}>
@@ -106,7 +106,7 @@ export default function ImagesFolder() {
                                                 {url.title}
 
                                             </Typography>
-                                            <Chip label="See More" size="small" variant="outlined" />
+                                            <Chip label="Update" size="small" variant="outlined" />
                                         </Box>
                                     </CardContent>
                                     <CardActions>

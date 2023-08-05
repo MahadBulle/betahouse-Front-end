@@ -63,6 +63,7 @@ console.log("rowww",rows)
 
           rows={rows}
           columns={columns}
+          sx={{boxShadow: 1}}
 
           // material ui datagrid ma support gareenaayo by default _id 
           //  si aan u xalino taas waxaan default row id  datagrid id to _id u badalno

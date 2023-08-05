@@ -60,6 +60,7 @@ console.log("rowww",rows)
     <>
       <Box sx={{ height: 400, width: '100%' }}>
         <DataGrid
+        sx={{boxShadow: 1}}
 
           rows={rows}
           columns={columns}

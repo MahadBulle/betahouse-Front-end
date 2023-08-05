@@ -40,7 +40,7 @@ const Home = () => {
 
 
   // const { mutateAsync } = PostQuery('/homesitting', 'homesitting');
-  const AddHomesetting = async (data) => {
+  const PostingHomeSett = async (data) => {
     console.log(data);
     try {
       await AddData('/homesetting',data).then(() => {
@@ -67,9 +67,10 @@ const Home = () => {
       {/* end */}
       <Box p={4}>
       <Alert severity="info">Home Setting</Alert>
-        <Box component={'form'} onSubmit={handleSubmit(AddHomesetting)}>
-          <Box sx={{ width: '400px,' }} mt={2}>
-            <Grid container spacing={2}>
+        <Box component={'form'} onSubmit={handleSubmit(PostingHomeSett)}>
+          <Box sx={{ width: '200px,' }} mt={2}>
+          <Button type='submit' variant='contained' size='small' fullWidth> Update </Button>
+            <Grid container spacing={2} sx={{marginTop:"5px"}}>
               
               <Grid xs={12} md={4} m={2}>
                 <TextField label='Title' id='Title' name='Title' {...register('Title')} variant='outlined' size='small' fullWidth/>
@@ -78,127 +79,47 @@ const Home = () => {
                 <TextField  label='name'  id='name' {...register('name')} variant='outlined' size='small' fullWidth  />
               </Grid>
               <Grid xs={12} md={4} m={2}>
-                <TextField
-                  label='location'
-                  {...register('location')}
-                  variant='outlined'
-                  size='small'
-                  fullWidth
+                <TextField label='location' {...register('location')} variant='outlined' size='small' fullWidth/>
+              </Grid>
+              <Grid xs={12} md={4} m={2}>
+                <TextField label='logo' {...register('logo')} variant='outlined' size='small' fullWidth />
+              </Grid>
+              <Grid xs={12} md={4} m={2}>
+                <TextField label='Complaint_Email' {...register('Complaint_Email')} variant='outlined' size='small' fullWidth/>
+              </Grid>
+              <Grid xs={12} md={4} m={2}>
+                <TextField label='email' {...register('email')} variant='outlined' size='small' fullWidth />
+              </Grid>
+              <Grid xs={12} md={4} m={2}>
+                <TextField label='Complaint_Phone' {...register('Complaint_Phone')} type='number' variant='outlined'  size='small' fullWidth />
+              </Grid>
+              <Grid xs={12} md={4} m={2}>
+                <TextField label='facebook' {...register('facebook')} variant='outlined' size='small' fullWidth />
+              </Grid>
+              <Grid xs={12} md={4} m={2}>
+                <TextField label='tiktok' {...register('tiktok')} variant='outlined' size='small' fullWidth />
+              </Grid>
+              <Grid xs={12} md={4} m={2}>
+                <TextField label='twitter' {...register('twitter')} variant='outlined' size='small' fullWidth />
+              </Grid>
+              <Grid xs={12} md={4} m={2}>
+                <TextField label='instagram' {...register('instagram')} variant='outlined' size='small' fullWidth />
+              </Grid>
+              <Grid xs={12} md={4} m={2}>
+                <TextField label='HeroTitle' {...register('HeroTitle')} variant='outlined' size='small' fullWidth />
+              </Grid>
+              <Grid xs={12} md={4} m={2}>
+                <TextField label='heroDescription' {...register('HeroDescription')} variant='outlined' size='small' fullWidth
                 />
               </Grid>
               <Grid xs={12} md={4} m={2}>
-                <TextField
-                  label='logo'
-                  {...register('logo')}
-                  variant='outlined'
-                  size='small'
-                  fullWidth
-                />
+                <TextField label='heroImage' {...register('heroImage')} variant='outlined' size='small' fullWidth />
               </Grid>
               <Grid xs={12} md={4} m={2}>
-                <TextField
-                  label='Complaint_Email'
-                  {...register('Complaint_Email')}
-                  variant='outlined'
-                  size='small'
-                  fullWidth
-                />
-              </Grid>
-              <Grid xs={12} md={4} m={2}>
-                <TextField
-                  label='email'
-                  {...register('email')}
-                  variant='outlined'
-                  size='small'
-                  fullWidth
-                />
-              </Grid>
-              <Grid xs={12} md={4} m={2}>
-                <TextField
-                  label='Complaint_Phone'
-                  {...register('Complaint_Phone')}
-                  type='number'
-                  variant='outlined'
-                  size='small'
-                  fullWidth
-                />
-              </Grid>
-              <Grid xs={12} md={4} m={2}>
-                <TextField
-                  label='facebook'
-                  {...register('facebook')}
-                  variant='outlined'
-                  size='small'
-                  fullWidth
-                />
-              </Grid>
-              <Grid xs={12} md={4} m={2}>
-                <TextField
-                  label='tiktok'
-                  {...register('tiktok')}
-                  variant='outlined'
-                  size='small'
-                  fullWidth
-                />
-              </Grid>
-              <Grid xs={12} md={4} m={2}>
-                <TextField
-                  label='twitter'
-                  {...register('twitter')}
-                  variant='outlined'
-                  size='small'
-                  fullWidth
-                />
-              </Grid>
-              <Grid xs={12} md={4} m={2}>
-                <TextField
-                  label='instagram'
-                  {...register('instagram')}
-                  variant='outlined'
-                  size='small'
-                  fullWidth
-                />
-              </Grid>
-              <Grid xs={12} md={4} m={2}>
-                <TextField
-                  label='HeroTitle'
-                  {...register('HeroTitle')}
-                  variant='outlined'
-                  size='small'
-                  fullWidth
-                />
-              </Grid>
-              <Grid xs={12} md={4} m={2}>
-                <TextField
-                  {...register('HeroDescription')}
-                  variant='outlined'
-                  size='small'
-                  fullWidth
-                />
-              </Grid>
-              <Grid xs={12} md={4} m={2}>
-                <TextField
-                  label='heroImage'
-                  {...register('heroImage')}
-                  variant='outlined'
-                  size='small'
-                  fullWidth
-                />
-              </Grid>
-              <Grid xs={12} md={4} m={2}>
-                <TextField
-                  label='footerText'
-                  {...register('footerText')}
-                  variant='outlined'
-                  size='small'
-                  fullWidth
-                />
+                <TextField label='footerText' {...register('footerText')} variant='outlined' size='small' fullWidth />
               </Grid>
             </Grid>
-            <Button type='submit' variant='contained' size='small' fullWidth>
-              {' '}
-              Submit
-            </Button>
+           
           </Box>
         </Box>
       </Box>

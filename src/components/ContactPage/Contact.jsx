@@ -15,6 +15,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import ConfirmDelete from "../../../CustomHooks/deleteComponent/ConfirmDelete";
 import {  useDeleteHook } from "../../../CustomHooks/deleteComponent/deleteHooks";
 import {GetQuery,PostQuery,UpdateQuery,DeleteQuery} from '../../../Shared/ReactQuery'  
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
 
 
@@ -138,7 +139,7 @@ const DeleteContactInfo= async(data)=>{
         <Typography variant="h6">Contact List</Typography>
 
         <IconButton onClick={ToggleDailog}>
-          <AddHomeWorkIcon sx={{ color: "#F5671F" }} />
+        <ControlPointIcon sx={{ color: "#F5671F" }} />
         </IconButton>
       </Box>
 

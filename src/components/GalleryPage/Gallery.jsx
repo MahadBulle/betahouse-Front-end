@@ -7,6 +7,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useEffect, useState } from "react";
 import GalleryList from "./GalleryList";
 import { AddGallery, getAllGallery } from "./ApiCrud";
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import { useForm } from "react-hook-form";
 export const Gallery = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
@@ -51,7 +52,7 @@ export const Gallery = () => {
                 <Typography variant="h6">List Gallery</Typography>
 
                 <IconButton onClick={ToggleDailog}>
-                    <AddHomeWorkIcon sx={{ color: "green" }} />
+                <ControlPointIcon sx={{ color: "#F5671F" }} />
                 </IconButton>
             </Box>
 

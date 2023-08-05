@@ -17,6 +17,7 @@ import ConfirmDelete from "../../../CustomHooks/deleteComponent/ConfirmDelete";
 import {  useDeleteHook } from "../../../CustomHooks/deleteComponent/deleteHooks";
 // import {getAll,AddData,Update,DeleteData} from '../../../Shared/apiCRUD'
 import {GetQuery,PostQuery,UpdateQuery,DeleteQuery} from '../../../Shared/ReactQuery'  
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
 
 
@@ -232,7 +233,7 @@ const DeleteClientInfo= async(data)=>{
         <Typography variant="h6">Clients List</Typography>
 
         <IconButton onClick={ToggleDailog}>
-          <AddHomeWorkIcon sx={{ color: "#F5671F" }} />
+        <ControlPointIcon sx={{ color: "#F5671F" }} />
         </IconButton>
       </Box>
 

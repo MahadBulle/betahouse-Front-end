@@ -16,8 +16,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import StarBorder from '@mui/icons-material/StarBorder';
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import VillaIcon from '@mui/icons-material/Villa';
 
-// import StarBorder from '@mui/icons-material/StarBorder';
 
 
 
@@ -31,14 +31,14 @@ export default function Sidebar({ DrawerOpen, DrawerClose }) {
       open={DrawerOpen}
       onClose={DrawerClose}
     >
-      <Box sx={{ width: "300px", backgroundColor: "#F5671F" }}>
+      <Box sx={{ width: "300px" ,bgcolor:"primary.dark" }}>
 
 
-        <Box sx={{ p: 4, borderBottom: 2, borderColor: "#eee" }}>
+        <Box sx={{ p: 4, borderBottom: 2, borderColor: "#eee",boxShadow: 8 }}>
 
           <Stack direction={'row'} spacing={1}>
             <Box>
-              <AddHomeWorkIcon sx={{ color: "white", height: 30, fontSize: 50 }} />
+              <VillaIcon sx={{ color: "white", height: 30, fontSize: 50 }} />
 
             </Box>
 
@@ -249,11 +249,11 @@ export default function Sidebar({ DrawerOpen, DrawerClose }) {
     </Drawer>
     {/* big screen menu */}
     <Box sx={{
-      width: "300px", height: "100vh", display: {
+      width: "300px", height: "150vh", display: {
         xs: "none",
 
         md: "block"
-      }, borderRight: 2, borderColor: "#eee"
+      }, borderRight: 2, borderColor: "#eee",boxShadow: 8
     }}>
 
 
@@ -261,7 +261,7 @@ export default function Sidebar({ DrawerOpen, DrawerClose }) {
 
         <Stack direction={'row'} spacing={1}>
           <Box>
-            <AddHomeWorkIcon sx={{ color: "green", height: 30, fontSize: 50 }} />
+            <VillaIcon sx={{ color: "primary.dark", height: 30, fontSize: 50 }} />
 
           </Box>
 
@@ -432,7 +432,7 @@ export default function Sidebar({ DrawerOpen, DrawerClose }) {
               }}>
               <ListItemIcon>
 
-                <BusinessIcon sx={[selectedMenu === 'gallery' && { color: "white" }]} />
+                <CollectionsIcon sx={[selectedMenu === 'gallery' && { color: "white" }]} />
               </ListItemIcon>
               <ListItemText primary="Gallery" />
 
