@@ -1,8 +1,8 @@
-import { Alert, Box, Breadcrumbs, Button, Grid, Stack, TextField,Link ,Typography  } from '@mui/material';
+import { Alert, Box, Breadcrumbs, Button, Grid, Stack, TextField, Link, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { PostQuery, GetQuery } from '../../../Shared/ReactQuery';
-import { getAll,AddData  } from '../../../Shared/apiCRUD';
+import { getAll, AddData } from '../../../Shared/apiCRUD';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
@@ -17,8 +17,8 @@ const Home = () => {
   // get data
   useEffect(() => {
     const HSett = async () => {
-      const {data} = await getAll('/homesetting');
-  
+      const { data } = await getAll('/homesetting');
+
       setValue('Title', data[0]?.Title);
       setValue('name', data[0]?.name);
       setValue('location', data[0]?.location);
@@ -43,7 +43,7 @@ const Home = () => {
   const PostingHomeSett = async (data) => {
     console.log(data);
     try {
-      await AddData('/homesetting',data).then(() => {
+      await AddData('/homesetting', data).then(() => {
         toast.success('this data has been updated successfully');
       });
     } catch (error) {
@@ -53,9 +53,9 @@ const Home = () => {
 
   return (
     <>
-     {/* breadcrumbs */}
+      {/* breadcrumbs */}
 
-     <Breadcrumbs aria-label="breadcrumb">
+      <Breadcrumbs aria-label="breadcrumb">
         <Link underline="hover" color="inherit" href="#">
           Dashboard
         </Link>
@@ -66,32 +66,32 @@ const Home = () => {
 
       {/* end */}
       <Box p={4}>
-      <Alert severity="info">Home Setting</Alert>
+        <Alert severity="info">Home Setting</Alert>
         <Box component={'form'} onSubmit={handleSubmit(PostingHomeSett)}>
           <Box sx={{ width: '200px,' }} mt={2}>
-          <Button type='submit' variant='contained' size='small' fullWidth> Update </Button>
-            <Grid container spacing={2} sx={{marginTop:"5px"}}>
-              
+            <Button type='submit' variant='contained' size='small' fullWidth> Update </Button>
+            <Grid container spacing={2} sx={{ marginTop: "5px" }}>
+
               <Grid xs={12} md={4} m={2}>
-                <TextField label='Title' id='Title' name='Title' {...register('Title')} variant='outlined' size='small' fullWidth/>
+                <TextField label='Title' id='Title' name='Title' {...register('Title')} variant='outlined' size='small' fullWidth />
               </Grid>
               <Grid xs={12} md={4} m={2}>
-                <TextField  label='name'  id='name' {...register('name')} variant='outlined' size='small' fullWidth  />
+                <TextField label='name' id='name' {...register('name')} variant='outlined' size='small' fullWidth />
               </Grid>
               <Grid xs={12} md={4} m={2}>
-                <TextField label='location' {...register('location')} variant='outlined' size='small' fullWidth/>
+                <TextField label='location' {...register('location')} variant='outlined' size='small' fullWidth />
               </Grid>
               <Grid xs={12} md={4} m={2}>
                 <TextField label='logo' {...register('logo')} variant='outlined' size='small' fullWidth />
               </Grid>
               <Grid xs={12} md={4} m={2}>
-                <TextField label='Complaint_Email' {...register('Complaint_Email')} variant='outlined' size='small' fullWidth/>
+                <TextField label='Complaint_Email' {...register('Complaint_Email')} variant='outlined' size='small' fullWidth />
               </Grid>
               <Grid xs={12} md={4} m={2}>
                 <TextField label='email' {...register('email')} variant='outlined' size='small' fullWidth />
               </Grid>
               <Grid xs={12} md={4} m={2}>
-                <TextField label='Complaint_Phone' {...register('Complaint_Phone')} type='number' variant='outlined'  size='small' fullWidth />
+                <TextField label='Complaint_Phone' {...register('Complaint_Phone')} type='number' variant='outlined' size='small' fullWidth />
               </Grid>
               <Grid xs={12} md={4} m={2}>
                 <TextField label='facebook' {...register('facebook')} variant='outlined' size='small' fullWidth />
@@ -119,7 +119,7 @@ const Home = () => {
                 <TextField label='footerText' {...register('footerText')} variant='outlined' size='small' fullWidth />
               </Grid>
             </Grid>
-           
+
           </Box>
         </Box>
       </Box>

@@ -2,7 +2,7 @@ import { TextField, Stack, Box, Button, Alert, Divider, Chip } from '@mui/materi
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import React, { useState,useEffect  } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -15,7 +15,7 @@ import Grid from '@mui/material/Grid';
 import { useRef } from 'react'
 // import {ref, uploadBytesResumable, getDownloadURL,listAll } from 'firebase/storage'
 import { ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage'
-import  storage  from '../../../Firebase';
+import storage from '../../../Firebase';
 
 export default function ImagesFolder() {
     const { id, Type } = useParams()
@@ -42,7 +42,7 @@ export default function ImagesFolder() {
         })
     }, []);
 
-   
+
 
 
     const itemData = [
@@ -80,7 +80,7 @@ export default function ImagesFolder() {
                 <Divider sx={{ height: 20 }} />
 
                 <Stack direction={'row'} spacing={2}>
-                    <TextField type='file' size='small' variant='outlined' label='Select Image'  onChange={(event) => { setImgupload(event.target.files[0]) }} fullWidth />
+                    <TextField type='file' size='small' variant='outlined' label='Select Image' onChange={(event) => { setImgupload(event.target.files[0]) }} fullWidth />
                     <Button variant='contained' onClick={UploImages} size='small'>Upload</Button>
                 </Stack>
                 <Divider />
@@ -98,7 +98,7 @@ export default function ImagesFolder() {
                                         sx={{ height: 140 }}
                                         image={url}
                                         title="green iguana"
-                                       
+
                                     />
                                     <CardContent>
                                         <Box sx={{ display: "flex", justifyContent: "space-between" }}>

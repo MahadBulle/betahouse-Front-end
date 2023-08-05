@@ -1,4 +1,4 @@
-import { Box, Stack, IconButton, Typography, Alert, TextField, Button, Divider,Breadcrumbs,Link } from "@mui/material"
+import { Box, Stack, IconButton, Typography, Alert, TextField, Button, Divider, Breadcrumbs, Link } from "@mui/material"
 import AddHomeWorkIcon from '@mui/icons-material/AddHomeWork';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -14,9 +14,9 @@ import { toast } from 'react-toastify';
 import { AddCircleOutlineSharp, ErrorOutlineOutlined } from "@mui/icons-material";
 import CircularProgress from '@mui/material/CircularProgress';
 import ConfirmDelete from "../../../CustomHooks/deleteComponent/ConfirmDelete";
-import {  useDeleteHook } from "../../../CustomHooks/deleteComponent/deleteHooks";
+import { useDeleteHook } from "../../../CustomHooks/deleteComponent/deleteHooks";
 // import {getAll,AddData,Update,DeleteData} from '../../../Shared/apiCRUD'
-import {GetQuery,PostQuery,UpdateQuery,DeleteQuery} from '../../../Shared/ReactQuery'  
+import { GetQuery, PostQuery, UpdateQuery, DeleteQuery } from '../../../Shared/ReactQuery'
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -40,14 +40,14 @@ export default function Clients() {
 
   const [EditId, setEditId] = useState('')
   const queryclient = useQueryClient();
-  const [CliDelId,setCliDelId]=useState("")
+  const [CliDelId, setCliDelId] = useState("")
 
   const [dailogOpen, setDailog] = useState(false)
   const ToggleDailog = () => {
     setDailog(!dailogOpen)
   }
 
-  const onClear = () =>{
+  const onClear = () => {
     setEditId('')
   }
 
@@ -62,7 +62,7 @@ export default function Clients() {
   //   }
 
   // })
-  const { data:client ,isLoading, isError}= GetQuery('/ourclient','client')
+  const { data: client, isLoading, isError } = GetQuery('/ourclient', 'client')
   console.log(client?.data)
 
   // const { mutate, isLoading: mutateLoading } = useMutation({
@@ -77,9 +77,9 @@ export default function Clients() {
   //   },
 
   // })
-  const {mutateAsync, isloading: mutateLoading}= PostQuery("/ourclient")
+  const { mutateAsync, isloading: mutateLoading } = PostQuery("/ourclient")
 
-  const {mutateAsync:updateMutate} = UpdateQuery(`/ourclient/${EditId}`,"client")
+  const { mutateAsync: updateMutate } = UpdateQuery(`/ourclient/${EditId}`, "client")
 
 
   // const { mutate: updateMutate, isLoading: updateLoading } = useMutation({
@@ -95,7 +95,7 @@ export default function Clients() {
   //   },
 
   //   onError: (e) => {
-      
+
 
   //     toast.error("Sorry Update ma dhicin")
   //     console.log(e)
@@ -108,7 +108,7 @@ export default function Clients() {
       try {
         // console.log(data)
         //   update section
-        updateMutate(data).then(()=>{
+        updateMutate(data).then(() => {
           toast.success("data has been updated successfully")
         })
 
@@ -123,7 +123,7 @@ export default function Clients() {
     }
     else {
       try {
-        mutateAsync(data).then(()=>{
+        mutateAsync(data).then(() => {
           toast.success("data has been inserted successfully")
 
         })
@@ -153,101 +153,101 @@ export default function Clients() {
   }
 
 
-//  delete mutate
+  //  delete mutate
 
-// const {mutate:deleteMutate} = useMutation({
-//   mutationFn:(id)=>DeleteClient(id),
-//   onSuccess:()=>{
-//       toast.success("Client has  been deleted")
-//       deletehook.Toggle()
-//       queryClient.invalidateQueries({queryKey:['client']})
-//   },
-//   onError:()=>{
-//       toast.error("Sorry client not deleted")
-//       deletehook.Toggle()
-     
-//   }
+  // const {mutate:deleteMutate} = useMutation({
+  //   mutationFn:(id)=>DeleteClient(id),
+  //   onSuccess:()=>{
+  //       toast.success("Client has  been deleted")
+  //       deletehook.Toggle()
+  //       queryClient.invalidateQueries({queryKey:['client']})
+  //   },
+  //   onError:()=>{
+  //       toast.error("Sorry client not deleted")
+  //       deletehook.Toggle()
 
-
-// })
-// const deletehook = useDeleteHook()
-
-// const deleteCheck = ()=>{
-
-//   // alert("deleted")
-//   deleteMutate (cldeleteid)
-//   console.log("aaaaaa",cldeleteid)
- 
-// }
-// // cal delete fucntion
-// const deleteClientInfo = async (data)=>{
-//  deletehook.setMessage(data.ClientName)
-//   deletehook.Toggle()
-//  setcldeleteid(data._id)
+  //   }
 
 
-//   // console.log("Xogta la rabo in la delete gareyo",data._id   )
+  // })
+  // const deletehook = useDeleteHook()
 
-// }
+  // const deleteCheck = ()=>{
 
-// const {mutate:delateMutate}=useMutation({
-//   mutationFn:(id)=>DeleteData(`ourclient/${id}`),
-//   onSuccess:()=>{
-//       toast.success('Client has been deleted')
-//       DeleteHook.Toggle()
-//       queryclient.invalidateQueries({queryKey:['client']})
-//   },
-//   onError:(err)=>{
-//       toast.error(err.message)
-//   }
+  //   // alert("deleted")
+  //   deleteMutate (cldeleteid)
+  //   console.log("aaaaaa",cldeleteid)
 
-
-// })
-const {mutate:delateMutate}=DeleteQuery(`/ourclient/${CliDelId}`,"client")
-
-const DeleteHook=useDeleteHook()
-
-const DeleteCheck=()=>{
-  delateMutate(CliDelId)
-
-}
-
-const DeleteClientInfo= async(data)=>{
-  DeleteHook.setMessage(data.ClientName)
-  DeleteHook.Toggle();
-  setCliDelId(data._id)
+  // }
+  // // cal delete fucntion
+  // const deleteClientInfo = async (data)=>{
+  //  deletehook.setMessage(data.ClientName)
+  //   deletehook.Toggle()
+  //  setcldeleteid(data._id)
 
 
-}
+  //   // console.log("Xogta la rabo in la delete gareyo",data._id   )
+
+  // }
+
+  // const {mutate:delateMutate}=useMutation({
+  //   mutationFn:(id)=>DeleteData(`ourclient/${id}`),
+  //   onSuccess:()=>{
+  //       toast.success('Client has been deleted')
+  //       DeleteHook.Toggle()
+  //       queryclient.invalidateQueries({queryKey:['client']})
+  //   },
+  //   onError:(err)=>{
+  //       toast.error(err.message)
+  //   }
+
+
+  // })
+  const { mutate: delateMutate } = DeleteQuery(`/ourclient/${CliDelId}`, "client")
+
+  const DeleteHook = useDeleteHook()
+
+  const DeleteCheck = () => {
+    delateMutate(CliDelId)
+
+  }
+
+  const DeleteClientInfo = async (data) => {
+    DeleteHook.setMessage(data.ClientName)
+    DeleteHook.Toggle();
+    setCliDelId(data._id)
+
+
+  }
 
   return <>
     <Box p={4}>
-    <ConfirmDelete open={DeleteHook.open} toggle={DeleteHook.Toggle} message={DeleteHook.message} confirm={DeleteCheck} />
+      <ConfirmDelete open={DeleteHook.open} toggle={DeleteHook.Toggle} message={DeleteHook.message} confirm={DeleteCheck} />
 
- {/* breadcrumbs */}
+      {/* breadcrumbs */}
 
- <Breadcrumbs aria-label="breadcrumb">
-  <Link underline="hover" color="inherit" href="#">
-    Dashboard
-  </Link>
- 
-  <Typography color="text.primary">Client</Typography>
-</Breadcrumbs>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link underline="hover" color="inherit" href="#">
+          Dashboard
+        </Link>
+
+        <Typography color="text.primary">Client</Typography>
+      </Breadcrumbs>
 
 
- {/* end */}
+      {/* end */}
       <Alert severity="info">Our Clients</Alert>
       <Box sx={{ display: "flex", justifyContent: "space-between" }} my={4}>
         <Typography variant="h6">Clients List</Typography>
 
         <IconButton onClick={ToggleDailog}>
-        <ControlPointIcon sx={{ color: "#F5671F" }} />
+          <ControlPointIcon sx={{ color: "#F5671F" }} />
         </IconButton>
       </Box>
 
       <Dialog sx={{
         backdropFilter: "blur(5px) sepia(5%)",
-      }} PaperProps={{ sx: { borderRadius: "20px" , color:"white"  }}} open={dailogOpen} onClose={ToggleDailog}>
+      }} PaperProps={{ sx: { borderRadius: "20px", color: "white" } }} open={dailogOpen} onClose={ToggleDailog}>
         <DialogTitle sx={{ bgcolor: "primary.dark" }}>New Client</DialogTitle>
         <Box component={"form"} onSubmit={handleSubmit(AddNewClient)}>
           <DialogContent >
@@ -261,17 +261,17 @@ const DeleteClientInfo= async(data)=>{
 
                 <TextField label="Client Name" {...register("ClientName")} variant="outlined" size="small" fullWidth />
                 {errors.ClientName ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.ClientName.message}
-                    </Typography>
-                  ) : null}
+                  <Typography sx={{ color: "error.main" }}>
+                    {errors.ClientName.message}
+                  </Typography>
+                ) : null}
 
                 <TextField label="Client logo" variant="outlined" {...register("Logo")} size="small" fullWidth />
                 {errors.Logo ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Logo.message}
-                    </Typography>
-                  ) : null}
+                  <Typography sx={{ color: "error.main" }}>
+                    {errors.Logo.message}
+                  </Typography>
+                ) : null}
 
 
               </Stack>
@@ -279,7 +279,7 @@ const DeleteClientInfo= async(data)=>{
             </Box>
           </DialogContent>
           <DialogActions>
-            <Button onClick={()=>{
+            <Button onClick={() => {
               ToggleDailog();
               reset();
               onClear();
@@ -292,7 +292,7 @@ const DeleteClientInfo= async(data)=>{
           </DialogActions>
         </Box>
       </Dialog>
- 
+
       <Divider />
       {/* {isLoading ? "Loading..." : "Done"} */}
       {/* {isLoading? "Loading..." : <ClientsList deleteClient={deleteClientInfo} ClientsData={client?.data} update={UpdateClientInfo} />} */}

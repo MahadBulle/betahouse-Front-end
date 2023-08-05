@@ -1,4 +1,4 @@
-import { getAll,AddData,Update,DeleteData } from './apiCRUD'
+import { getAll, AddData, Update, DeleteData } from './apiCRUD'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { toast } from 'react-toastify';
 
@@ -16,25 +16,25 @@ export const GetQuery = (endpoint, queryKey) => {
     })
 }
 
-export const PostQuery = (endpoint,queryKey) => {
+export const PostQuery = (endpoint, queryKey) => {
     const queryclient = useQueryClient();
     return useMutation({
-        mutationFn:async (data)=> await AddData(endpoint,data),
+        mutationFn: async (data) => await AddData(endpoint, data),
         onSuccess: () => {
             queryclient.invalidateQueries({ queryKey: [queryKey] })
         },
         onError: (err) => {
             toast.error("sorry datada lama xareynin")
-            console.log("error",err)
+            console.log("error", err)
         }
 
-})
+    })
 }
 
-export const UpdateQuery = (endpoint,queryKey) => {
+export const UpdateQuery = (endpoint, queryKey) => {
     const queryclient = useQueryClient();
     return useMutation({
-        mutationFn: (data)=> Update(endpoint,data),
+        mutationFn: (data) => Update(endpoint, data),
         onSuccess: () => {
             queryclient.invalidateQueries({ queryKey: [queryKey] })
         },
@@ -42,23 +42,23 @@ export const UpdateQuery = (endpoint,queryKey) => {
             toast.error("sorry datada lama xareynin")
         }
 
-})
+    })
 }
 
-export const DeleteQuery = (endpoint,queryKey) => {
+export const DeleteQuery = (endpoint, queryKey) => {
     const queryclient = useQueryClient();
     return useMutation({
-        mutationFn: (id)=> DeleteData(endpoint,id),
+        mutationFn: (id) => DeleteData(endpoint, id),
         onSuccess: () => {
             queryclient.invalidateQueries({ queryKey: [queryKey] })
             toast.success("Deleted successfully")
-             
+
         },
         onError: () => {
             toast.error("sorry datada deletegareynin")
         }
 
-})
+    })
 }
 
 

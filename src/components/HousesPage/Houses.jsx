@@ -44,7 +44,7 @@ export default function Houses() {
     Deposit: yup.string().required("Enter The Deposit"),
     Status: yup.string().required("Enter The Status"),
     Description: yup.string().required("Enter The Description"),
-  
+
 
   });
   const {
@@ -186,14 +186,14 @@ export default function Houses() {
         <Typography variant="h6">Houses List</Typography>
 
         <IconButton onClick={ToggleDailog}>
-        <ControlPointIcon sx={{ color: "#F5671F" }} />
+          <ControlPointIcon sx={{ color: "#F5671F" }} />
         </IconButton>
       </Box>
 
       <Dialog sx={{
         backdropFilter: "blur(5px) sepia(5%)",
-      }} PaperProps={{ sx: { borderRadius: "20px" }}} open={dailogOpen} onClose={ToggleDailog}>
-        <DialogTitle sx={{ bgcolor: "primary.dark", color:"white"  }}>New House</DialogTitle>
+      }} PaperProps={{ sx: { borderRadius: "20px" } }} open={dailogOpen} onClose={ToggleDailog}>
+        <DialogTitle sx={{ bgcolor: "primary.dark", color: "white" }}>New House</DialogTitle>
         <Box component={"form"} onSubmit={handleSubmit(AddNewHouse)}>
           <DialogContent >
             <Box sx={{ width: "400px" }} mt={2}>
@@ -204,111 +204,111 @@ export default function Houses() {
 
 
                 <Stack spacing={2} direction={'row'}>
-                <Stack direction={'column'}>
-                  <TextField label="Type" {...register("Type")} variant="outlined" size="small" fullWidth />
-                  {errors.Type ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Type.message}
-                    </Typography>
-                  ) : null}
+                  <Stack direction={'column'}>
+                    <TextField label="Type" {...register("Type")} variant="outlined" size="small" fullWidth />
+                    {errors.Type ? (
+                      <Typography sx={{ color: "error.main" }}>
+                        {errors.Type.message}
+                      </Typography>
+                    ) : null}
                   </Stack>
                   <Stack direction={'column'}>
-                  <TextField label="Area" variant="outlined" {...register("Area")} size="small" fullWidth />
-                  {errors.Area ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Area.message}
-                    </Typography>
-                  ) : null}
+                    <TextField label="Area" variant="outlined" {...register("Area")} size="small" fullWidth />
+                    {errors.Area ? (
+                      <Typography sx={{ color: "error.main" }}>
+                        {errors.Area.message}
+                      </Typography>
+                    ) : null}
                   </Stack>
-                  
+
                 </Stack>
 
                 <TextField label="Address" variant="outlined" {...register("Address")} size="small" fullWidth />
                 {errors.Address ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Address.message}
-                    </Typography>
-                  ) : null}
+                  <Typography sx={{ color: "error.main" }}>
+                    {errors.Address.message}
+                  </Typography>
+                ) : null}
 
                 <Stack spacing={2} direction={'row'}>
-                <Stack direction={'column'}>
-                  <TextField label="Age" variant="outlined" {...register("Age")} size="small" fullWidth />
-                  {errors.Age ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Age.message}
-                    </Typography>
-                  ) : null}
+                  <Stack direction={'column'}>
+                    <TextField label="Age" variant="outlined" {...register("Age")} size="small" fullWidth />
+                    {errors.Age ? (
+                      <Typography sx={{ color: "error.main" }}>
+                        {errors.Age.message}
+                      </Typography>
+                    ) : null}
                   </Stack>
                   <Stack direction={'column'}>
-                  <TextField label="Rent" variant="outlined" {...register("Rent")} size="small" fullWidth />
-                  {errors.Rent ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Rent.message}
-                    </Typography>
-                  ) : null}
+                    <TextField label="Rent" variant="outlined" {...register("Rent")} size="small" fullWidth />
+                    {errors.Rent ? (
+                      <Typography sx={{ color: "error.main" }}>
+                        {errors.Rent.message}
+                      </Typography>
+                    ) : null}
                   </Stack>
                 </Stack>
 
 
                 <Stack spacing={2} direction={'row'}>
-                <Stack direction={'column'}>
-                  <TextField label="Rooms" variant="outlined" {...register("Rooms")} size="small" fullWidth />
-                  {errors.Rooms ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Rooms.message}
-                    </Typography>
-                  ) : null}
+                  <Stack direction={'column'}>
+                    <TextField label="Rooms" variant="outlined" {...register("Rooms")} size="small" fullWidth />
+                    {errors.Rooms ? (
+                      <Typography sx={{ color: "error.main" }}>
+                        {errors.Rooms.message}
+                      </Typography>
+                    ) : null}
                   </Stack>
                   <Stack direction={'column'}>
-                  <TextField label="Toilets" variant="outlined" {...register("Toilets")} size="small" fullWidth />
-                  {errors.Toilets ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Toilets.message}
-                    </Typography>
-                  ) : null}
+                    <TextField label="Toilets" variant="outlined" {...register("Toilets")} size="small" fullWidth />
+                    {errors.Toilets ? (
+                      <Typography sx={{ color: "error.main" }}>
+                        {errors.Toilets.message}
+                      </Typography>
+                    ) : null}
                   </Stack>
                   <Stack direction={'column'}>
-                  <TextField label="MasterRoom" variant="outlined" {...register("MasterRoom")} size="small" fullWidth />
-                  {errors.MasterRoom ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.MasterRoom.message}
-                    </Typography>
-                  ) : null}
+                    <TextField label="MasterRoom" variant="outlined" {...register("MasterRoom")} size="small" fullWidth />
+                    {errors.MasterRoom ? (
+                      <Typography sx={{ color: "error.main" }}>
+                        {errors.MasterRoom.message}
+                      </Typography>
+                    ) : null}
                   </Stack>
                 </Stack>
 
                 <TextField label="Parking" variant="outlined" {...register("Parking")} size="small" fullWidth />
                 {errors.Parking ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Parking.message}
-                    </Typography>
-                  ) : null}
+                  <Typography sx={{ color: "error.main" }}>
+                    {errors.Parking.message}
+                  </Typography>
+                ) : null}
 
                 <Stack spacing={2} direction={'row'}>
-                <Stack direction={'column'}>
-                  <TextField label="Image" variant="outlined" {...register("Image")} size="small" fullWidth />
-                  {errors.Image ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Image.message}
-                    </Typography>
-                  ) : null}
+                  <Stack direction={'column'}>
+                    <TextField label="Image" variant="outlined" {...register("Image")} size="small" fullWidth />
+                    {errors.Image ? (
+                      <Typography sx={{ color: "error.main" }}>
+                        {errors.Image.message}
+                      </Typography>
+                    ) : null}
                   </Stack>
                   <Stack direction={'column'}>
-                  <TextField label="Deposit" variant="outlined" {...register("Deposit")} size="small" fullWidth />
-                  {errors.Deposit ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Deposit.message}
-                    </Typography>
-                  ) : null}
+                    <TextField label="Deposit" variant="outlined" {...register("Deposit")} size="small" fullWidth />
+                    {errors.Deposit ? (
+                      <Typography sx={{ color: "error.main" }}>
+                        {errors.Deposit.message}
+                      </Typography>
+                    ) : null}
                   </Stack>
                 </Stack>
 
                 <TextField label="Status" variant="outlined" {...register("Status")} size="small" fullWidth />
                 {errors.Status ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Status.message}
-                    </Typography>
-                  ) : null}
+                  <Typography sx={{ color: "error.main" }}>
+                    {errors.Status.message}
+                  </Typography>
+                ) : null}
 
                 {/* <TextField label='Select status' select value={status} onChange={handleBedel} size="small" {...register("Status")} fullWidth>
               <MenuItem value={Available}>Available</MenuItem>
@@ -327,10 +327,10 @@ export default function Houses() {
 
                 <TextField label="Description" variant="outlined" {...register("Description")} size="small" fullWidth />
                 {errors.Description ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Description.message}
-                    </Typography>
-                  ) : null}
+                  <Typography sx={{ color: "error.main" }}>
+                    {errors.Description.message}
+                  </Typography>
+                ) : null}
 
 
               </Stack>

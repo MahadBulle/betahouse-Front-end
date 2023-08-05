@@ -35,14 +35,14 @@ export default function About() {
 
   }, [])
 
- const {mutateAsync}= PostQuery("/about","about")
+  const { mutateAsync } = PostQuery("/about", "about")
 
-  const UpdateAbout =async () => {
+  const UpdateAbout = async () => {
     const data = {
-      Description:Desc,
-      ShortDescription:Descyer
+      Description: Desc,
+      ShortDescription: Descyer
     }
-    mutateAsync(data).then(()=>{toast.success("data has been updated")})
+    mutateAsync(data).then(() => { toast.success("data has been updated") })
 
     // const data = {
     //   Description: Desc,
@@ -67,7 +67,7 @@ export default function About() {
 
       {/* end */}
       <Box sx={{ p: 4 }}>
-        <Button variant='contained' type='submit' sx={{ bgcolor: "primary.main", color: "white", marginTop: "5px", width: "100%" }} onClick={() =>UpdateAbout() }>
+        <Button variant='contained' type='submit' sx={{ bgcolor: "primary.main", color: "white", marginTop: "5px", width: "100%" }} onClick={() => UpdateAbout()}>
           update
         </Button>
       </Box>

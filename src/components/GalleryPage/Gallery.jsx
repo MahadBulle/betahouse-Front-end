@@ -52,7 +52,7 @@ export const Gallery = () => {
                 <Typography variant="h6">List Gallery</Typography>
 
                 <IconButton onClick={ToggleDailog}>
-                <ControlPointIcon sx={{ color: "#F5671F" }} />
+                    <ControlPointIcon sx={{ color: "#F5671F" }} />
                 </IconButton>
             </Box>
 

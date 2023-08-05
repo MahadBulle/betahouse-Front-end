@@ -3,9 +3,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import React from 'react'
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteIcon from '@mui/icons-material/Delete';
-export default function ContactList({ContactsData,updateContacts,deleteContacts}){
+export default function ContactList({ ContactsData, updateContacts, deleteContacts }) {
 
-console.log(ContactsData,'cluesff')
+  console.log(ContactsData, 'cluesff')
 
   const columns = [
     { field: '_id', headerName: 'ID', width: 90 },
@@ -55,12 +55,12 @@ console.log(ContactsData,'cluesff')
 
   const rows = ContactsData ? ContactsData : null
 
-console.log("rowww",rows)
+  console.log("rowww", rows)
   return (
     <>
       <Box sx={{ height: 400, width: '100%' }}>
         <DataGrid
-        sx={{boxShadow: 1}}
+          sx={{ boxShadow: 1 }}
 
           rows={rows}
           columns={columns}

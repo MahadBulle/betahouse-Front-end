@@ -27,7 +27,7 @@ export default function HousesList({ HousesData, updateHouse, deleteHouse }) {
         Toggle();
 
     }
-{/* <Grid item xs= {12} sm={8} md={6} lg={4}> */}
+    {/* <Grid item xs= {12} sm={8} md={6} lg={4}> */ }
 
     const columns = [
         // { field: '_id', headerName: 'ID', width: 90 },
@@ -113,7 +113,7 @@ export default function HousesList({ HousesData, updateHouse, deleteHouse }) {
 
 
     const rows = HousesData ? HousesData : null
- 
+
     // </Grid>
 
     // console.log("rowww", rows)
@@ -128,9 +128,9 @@ export default function HousesList({ HousesData, updateHouse, deleteHouse }) {
                     aria-describedby="alert-dialog-description"
                     sx={{
                         backdropFilter: "blur(5px) sepia(5%)",
-                      }} PaperProps={{ sx: { borderRadius: "20px" }}}
+                    }} PaperProps={{ sx: { borderRadius: "20px" } }}
                 >
-                    <DialogTitle sx={{bgcolor: "primary.dark", color:"white"}} id="alert-dialog-title">
+                    <DialogTitle sx={{ bgcolor: "primary.dark", color: "white" }} id="alert-dialog-title">
                         Type : {" "}{houseDatta?.Type}  {" || "} Status: {"  "} {houseDatta?.Status}
                     </DialogTitle>
                     <DialogContent>
@@ -230,14 +230,14 @@ export default function HousesList({ HousesData, updateHouse, deleteHouse }) {
                     </DialogContent>
                     <DialogActions>
 
-                        <Button sx={{color: "primary.dark" }} onClick={Toggle}>Close</Button>
+                        <Button sx={{ color: "primary.dark" }} onClick={Toggle}>Close</Button>
 
                     </DialogActions>
                 </Dialog>
                 {/* <Dialog end> */}
 
                 <DataGrid
-                sx={{boxShadow: 1}}
+                    sx={{ boxShadow: 1 }}
 
                     rows={rows}
                     columns={columns}

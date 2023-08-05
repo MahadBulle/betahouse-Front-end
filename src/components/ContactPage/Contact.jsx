@@ -1,4 +1,4 @@
-import { Box, Stack, IconButton, Typography, Alert, TextField, Button, Divider,Breadcrumbs,Link } from "@mui/material"
+import { Box, Stack, IconButton, Typography, Alert, TextField, Button, Divider, Breadcrumbs, Link } from "@mui/material"
 import AddHomeWorkIcon from '@mui/icons-material/AddHomeWork';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -13,8 +13,8 @@ import { toast } from 'react-toastify';
 import { AddCircleOutlineSharp, ErrorOutlineOutlined } from "@mui/icons-material";
 import CircularProgress from '@mui/material/CircularProgress';
 import ConfirmDelete from "../../../CustomHooks/deleteComponent/ConfirmDelete";
-import {  useDeleteHook } from "../../../CustomHooks/deleteComponent/deleteHooks";
-import {GetQuery,PostQuery,UpdateQuery,DeleteQuery} from '../../../Shared/ReactQuery'  
+import { useDeleteHook } from "../../../CustomHooks/deleteComponent/deleteHooks";
+import { GetQuery, PostQuery, UpdateQuery, DeleteQuery } from '../../../Shared/ReactQuery'
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -39,23 +39,23 @@ export default function Contact() {
   } = useForm({ resolver: yupResolver(YupValidate) })
   const [EditId, setEditId] = useState('')
   const queryclient = useQueryClient();
-  const [ConDelId,setConDelId]=useState("")
+  const [ConDelId, setConDelId] = useState("")
 
   const [dailogOpen, setDailog] = useState(false)
   const ToggleDailog = () => {
     setDailog(!dailogOpen)
   }
-  const onClear = () =>{
+  const onClear = () => {
     setEditId('')
   }
 
-  const { data:contact ,isLoading, isError}= GetQuery('/contact','contacts')
+  const { data: contact, isLoading, isError } = GetQuery('/contact', 'contacts')
   // console.log(service?.data)
 
 
-  const {mutateAsync, isloading: mutateLoading}= PostQuery("/contact","contacts")
+  const { mutateAsync, isloading: mutateLoading } = PostQuery("/contact", "contacts")
 
-  const {mutateAsync:updateMutate} = UpdateQuery(`/contact/${EditId}`,"contacts")
+  const { mutateAsync: updateMutate } = UpdateQuery(`/contact/${EditId}`, "contacts")
 
   const AddNewContacts = async (data) => {
 
@@ -64,7 +64,7 @@ export default function Contact() {
       try {
         // console.log(data)
         //   update section
-        updateMutate(data).then(()=>{
+        updateMutate(data).then(() => {
           toast.success("data has been updated successfully")
         })
         // console.log("Data has been Updated")
@@ -78,7 +78,7 @@ export default function Contact() {
     }
     else {
       try {
-        mutateAsync(data).then(()=>{
+        mutateAsync(data).then(() => {
           toast.success("data has been inserted successfully")
 
         })
@@ -109,53 +109,53 @@ export default function Contact() {
   }
 
 
-const {mutate:delateMutate}=DeleteQuery(`/contact/${ConDelId}`,"contacts")
+  const { mutate: delateMutate } = DeleteQuery(`/contact/${ConDelId}`, "contacts")
 
-const DeleteHook=useDeleteHook()
+  const DeleteHook = useDeleteHook()
 
-const DeleteCheck=()=>{
-  delateMutate(ConDelId)
+  const DeleteCheck = () => {
+    delateMutate(ConDelId)
 
-}
+  }
 
-const DeleteContactInfo= async(data)=>{
-  DeleteHook.setMessage(data.Name)
-  DeleteHook.Toggle();
-  setConDelId(data._id)
-  reset()
+  const DeleteContactInfo = async (data) => {
+    DeleteHook.setMessage(data.Name)
+    DeleteHook.Toggle();
+    setConDelId(data._id)
+    reset()
 
 
-}
+  }
 
   return <>
     <Box p={4}>
-    <ConfirmDelete open={DeleteHook.open} toggle={DeleteHook.Toggle} message={DeleteHook.message} confirm={DeleteCheck} />
+      <ConfirmDelete open={DeleteHook.open} toggle={DeleteHook.Toggle} message={DeleteHook.message} confirm={DeleteCheck} />
 
- {/* breadcrumbs */}
+      {/* breadcrumbs */}
 
- <Breadcrumbs aria-label="breadcrumb">
-  <Link underline="hover" color="inherit" href="#">
-    Dashboard
-  </Link>
- 
-  <Typography color="text.primary">Contact us</Typography>
-</Breadcrumbs>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link underline="hover" color="inherit" href="#">
+          Dashboard
+        </Link>
+
+        <Typography color="text.primary">Contact us</Typography>
+      </Breadcrumbs>
 
 
- {/* end */}
+      {/* end */}
       <Alert severity="info">Contact us</Alert>
       <Box sx={{ display: "flex", justifyContent: "space-between" }} my={4}>
         <Typography variant="h6">Contact List</Typography>
 
         <IconButton onClick={ToggleDailog}>
-        <ControlPointIcon sx={{ color: "#F5671F" }} />
+          <ControlPointIcon sx={{ color: "#F5671F" }} />
         </IconButton>
       </Box>
 
       <Dialog sx={{
         backdropFilter: "blur(5px) sepia(5%)",
-      }} PaperProps={{ sx: { borderRadius: "20px" }}} open={dailogOpen} onClose={ToggleDailog}>
-        <DialogTitle sx={{ bgcolor: "primary.dark", color:"white"  }}>New Contacts</DialogTitle>
+      }} PaperProps={{ sx: { borderRadius: "20px" } }} open={dailogOpen} onClose={ToggleDailog}>
+        <DialogTitle sx={{ bgcolor: "primary.dark", color: "white" }}>New Contacts</DialogTitle>
         <Box component={"form"} onSubmit={handleSubmit(AddNewContacts)}>
           <DialogContent >
             <Box sx={{ width: "400px" }} mt={2}>
@@ -168,24 +168,24 @@ const DeleteContactInfo= async(data)=>{
 
                 <TextField label="Name" {...register("Name")} variant="outlined" size="small" fullWidth />
                 {errors.Name ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Name.message}
-                    </Typography>
-                  ) : null}
+                  <Typography sx={{ color: "error.main" }}>
+                    {errors.Name.message}
+                  </Typography>
+                ) : null}
 
                 <TextField label="Phone" variant="outlined" {...register("Phone")} size="small" fullWidth />
                 {errors.Phone ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Phone.message}
-                    </Typography>
-                  ) : null}
+                  <Typography sx={{ color: "error.main" }}>
+                    {errors.Phone.message}
+                  </Typography>
+                ) : null}
 
                 <TextField label="Message" variant="outlined" {...register("Message")} size="small" fullWidth />
                 {errors.Message ? (
-                    <Typography sx={{ color: "error.main" }}>
-                      {errors.Message.message}
-                    </Typography>
-                  ) : null}
+                  <Typography sx={{ color: "error.main" }}>
+                    {errors.Message.message}
+                  </Typography>
+                ) : null}
 
 
               </Stack>
@@ -193,7 +193,7 @@ const DeleteContactInfo= async(data)=>{
             </Box>
           </DialogContent>
           <DialogActions>
-          <Button onClick={()=>{
+            <Button onClick={() => {
               ToggleDailog();
               reset();
               onClear();
@@ -206,9 +206,9 @@ const DeleteContactInfo= async(data)=>{
           </DialogActions>
         </Box>
       </Dialog>
- 
+
       <Divider />
- 
+
       {isError ? (
         <Box sx={{ display: 'flex', justifyContent: 'center', textAlign: 'center', alignItems: "center", p: 10 }}>
 
