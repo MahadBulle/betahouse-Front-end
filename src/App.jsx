@@ -10,17 +10,25 @@ import Contact from "./components/ContactPage/Contact";
 import Houses from "./components/HousesPage/Houses";
 import ImagesFolder from "./components/HousesPage/ImagesFolder";
 import Users from "./components/UsersPage/Users";
+import Login from "./Login/login";
+import Logout from "./Login/logout";
+import { useUserContext } from './ContextApi/UserContext'
+import Whitescreen from "./Login/whitescreen";
 
 function app() {
+  const {isLogin}= useUserContext()
+  console.log(isLogin)
   return (
     <>
 
       {/* <Dashboard/> */}
       <Routes>
 
-        <Route path='/' element={<h2>Login page</h2>} />
+        <Route path='/' element={<Login/>} />
+        <Route path='/logout' element={<Logout/>} />
+        <Route path='*' element={<Whitescreen/>} />
 
-        <Route path='Dashboard' element={<Dashboard />}>
+        {isLogin && <Route path='Dashboard' element={<Dashboard />}>
           <Route path='client' element={<Clients />} />
           <Route path='houses' element={<Houses />} />
           <Route path='images/:id/:Type' element={<ImagesFolder />} />
@@ -30,7 +38,7 @@ function app() {
           <Route path='about' element={<About />} />
           <Route path='contact' element={<Contact />} />
           <Route path='users' element={<Users />} />
-        </Route>
+        </Route>}
 
       </Routes>
 
